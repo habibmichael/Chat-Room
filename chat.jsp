@@ -49,5 +49,67 @@
 		out.println("</font></td></tr>");
 		out.println("</table></center>");
 
+%>
+
+<%
+	} else{
+		if(request.getParameter("textarea1")!=null){
+			String name= request.getParameter("text1");
+
+		String text0=(String) application.getAttribute("text0");
+		String text1 = (String)application.getAttribute("text1");
+		String text2=(String) application.getAttribute("text2");
+		String text3=(String) application.getAttribute("text3");
+		String text4=(String) application.getAttribute("text4");
+
+		application.setAttribute("text4",text4);
+		application.setAttribute("text3",text3);
+		application.setAttribute("text2",text2);
+		application.setAttribute("text1",text1);
+		application.setAttribute("text0",text0);
+
+		application.setAttribute("text0","<b>"+name+":</b>"+
+		request.getParameter("textarea1"));
+		}
+		%>
+    <HTML>
+        <HEAD>
+        </HEAD>
+        <BODY>
+            <FORM NAME="form1" METHOD="POST">
+                <CENTER>
+                    Your name:
+<%
+    if(request.getParameter("text1") != null){
+%>
+                    <INPUT TYPE="TEXT" NAME="text1" 
+                    VALUE=<% 
+                    out.println(request.getParameter("text1")); %> 
+                    ></INPUT>
+<%
+    }
+    else{
+%>
+                    <INPUT TYPE="TEXT" NAME="text1" VALUE="Guest">
+                    </INPUT>
+<%
+    }
+%> 
+                    <BR>
+                    <TEXTAREA NAME="textarea1" 
+                    ROWS="4" COLS="60"></TEXTAREA>
+                    <BR>
+                    <INPUT TYPE="SUBMIT" VALUE="Submit">
+                </CENTER>
+            </FORM>
+            <script language="javascript">
+                document.form1.textarea1.focus()
+            </script>
+        </BODY>
+    </HTML>
+<%
+    }
+%> 
+
 	</BODY>	
 </HTML>
